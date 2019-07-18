@@ -4,7 +4,7 @@ layout: default
 
 <form action="" class="cari">
 	<div class="form-group">
-		<input type="text" class="form-control" required="" placeholder="Cari apa?">
+		<input type="text" class="form-control kata-kunci" required="" placeholder="Cari apa?">
 	</div>
 </form>
 
@@ -19,16 +19,26 @@ layout: default
 <div class="isi"></div>
 
 <script>
+	if (localStorage.getItem('tweet')) {
+		$('.isi').html(localStorage.getItem('tweet'))
+	}
+
 	$('form').submit(function(x){
 		x.preventDefault()
 	})
 
-	$('.cari').submit(function(x){
+	$('.cari').submit(function(){
 		$('.isinya').hide()
+		$('.isinya').each(function(){
+			if ($(this).is(":contains(" + $('.kata-kunci').val() + ")")) {
+				$(this).show()
+			}
+		})
 	})
 
-	$('.tweet-baru').submit(function(x){
+	$('.tweet-baru').submit(function(){
 		$('.isi').prepend('<div class="panel panel-default isinya"><div class="panel-body">' + $(this).find('.input').val() + '</div><div class="panel-footer">' + new Date + '</div></div>')
 		$('textarea').val('')
+		localStorage.setItem('tweet', $('.isi').html())
 	})
 </script>
