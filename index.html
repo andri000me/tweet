@@ -1,0 +1,21 @@
+---
+layout: default
+---
+
+<form class="form">
+	<div class="form-group">
+		<textarea name="" id="" cols="30" rows="3" class="form-control input" placeholder="Apa yang kamu pikirkan?" required=""></textarea>
+	</div>
+	<div class="form-group">
+		<input type="submit" class="btn btn-success" value="Oke">
+	</div>
+</form>
+<div class="isi"></div>
+
+<script>
+	$('.form').submit(function(x){
+		x.preventDefault()
+		$('.isi').prepend('<div class="panel panel-default"><div class="panel-body">' + $(this).find('.input').val() + '</div><div class="panel-footer">' + new Date + '</div></div>')
+		$('textarea').val('')
+	})
+</script>
