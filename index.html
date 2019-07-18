@@ -2,7 +2,13 @@
 layout: default
 ---
 
-<form class="form">
+<form action="" class="cari">
+	<div class="form-group">
+		<input type="text" class="form-control" required="" placeholder="Cari apa?">
+	</div>
+</form>
+
+<form class="tweet-baru">
 	<div class="form-group">
 		<textarea name="" id="" cols="30" rows="3" class="form-control input" placeholder="Apa yang kamu pikirkan?" required=""></textarea>
 	</div>
@@ -13,9 +19,16 @@ layout: default
 <div class="isi"></div>
 
 <script>
-	$('.form').submit(function(x){
+	$('form').submit(function(x){
 		x.preventDefault()
-		$('.isi').prepend('<div class="panel panel-default"><div class="panel-body">' + $(this).find('.input').val() + '</div><div class="panel-footer">' + new Date + '</div></div>')
+	})
+
+	$('.cari').submit(function(x){
+		$('.isinya').hide()
+	})
+
+	$('.tweet-baru').submit(function(x){
+		$('.isi').prepend('<div class="panel panel-default isinya"><div class="panel-body">' + $(this).find('.input').val() + '</div><div class="panel-footer">' + new Date + '</div></div>')
 		$('textarea').val('')
 	})
 </script>
