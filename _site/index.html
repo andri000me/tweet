@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tweet</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<script src="vendor/jquery/jquery.min.js"></script>
+</head>
+<body>
+	<div class="navbar navbar-default">
+		<div class="container">
+			<div class="navbar-header">
+				<a href="index.html" class="navbar-brand">Tweet</a>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<style>
+	* {
+		word-wrap: break-word;
+	}
+
+	.konten {
+		white-space: pre-wrap;
+	}
+</style>
+
+<form action="" class="cari">
+	<div class="form-group">
+		<input type="text" class="form-control kata-kunci" required="" placeholder="Cari apa?">
+	</div>
+</form>
+
+<form class="tweet-baru">
+	<div class="form-group">
+		<textarea name="" id="" cols="30" rows="3" class="form-control input" placeholder="Apa yang kamu pikirkan?" required=""></textarea>
+	</div>
+	<div class="form-group">
+		<input type="submit" class="btn btn-success" value="Oke">
+	</div>
+</form>
+<div class="isi"></div>
+
+<script>
+	if (localStorage.getItem('tweet')) {
+		$('.isi').html(localStorage.getItem('tweet'))
+	}
+
+	$('form').submit(function(x){
+		x.preventDefault()
+	})
+
+	$('.cari').submit(function(){
+		$('.isinya').hide()
+		$('.isinya').each(function(){
+			if ($(this).is(":contains(" + $('.kata-kunci').val() + ")")) {
+				$(this).show()
+			}
+		})
+	})
+
+	$('.tweet-baru').submit(function(){
+		$('.isi').prepend('<div class="panel panel-default isinya"><div class="panel-body"><div class="konten">' + $(this).find('.input').val() + '</div></div><div class="panel-footer">' + new Date + '</div></div>')
+		$('textarea').val('')
+		localStorage.setItem('tweet', $('.isi').html())
+	})
+</script>	
+	</div>
+</body>
+</html>
