@@ -2,6 +2,16 @@
 layout: default
 ---
 
+<style>
+	* {
+		word-wrap: break-word;
+	}
+
+	.konten {
+		white-space: pre-wrap;
+	}
+</style>
+
 <form action="" class="cari">
 	<div class="form-group">
 		<input type="text" class="form-control kata-kunci" required="" placeholder="Cari apa?">
@@ -37,7 +47,7 @@ layout: default
 	})
 
 	$('.tweet-baru').submit(function(){
-		$('.isi').prepend('<div class="panel panel-default isinya"><div class="panel-body">' + $(this).find('.input').val() + '</div><div class="panel-footer">' + new Date + '</div></div>')
+		$('.isi').prepend('<div class="panel panel-default isinya"><div class="panel-body"><div class="konten">' + $(this).find('.input').val() + '</div></div><div class="panel-footer">' + new Date + '</div></div>')
 		$('textarea').val('')
 		localStorage.setItem('tweet', $('.isi').html())
 	})
